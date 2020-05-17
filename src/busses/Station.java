@@ -3,17 +3,18 @@ package busses;
 import java.util.ArrayList;
 import java.util.List;
 /**
- * Station names as char
- * the list of the paths
- * getters for station ID, paths
+ * Station as an object (node)
  */
-class Station {
+public class Station {
+    public int length;
     private ArrayList<Edge> paths = new ArrayList<>();
-    private char id;
-    char getID(){
+    public char id;
+
+    //private final char id;
+    public char getID() {
         return this.id;
     }
-    Station(char id){
+    public Station(char id){
         this.id = id;
     }
     List<Edge> getPaths(){
