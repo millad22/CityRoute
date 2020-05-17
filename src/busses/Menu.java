@@ -5,13 +5,14 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 class Menu extends IOException {
-    private int userInput = 0;
     void printMenu() {
         System.out.println("[1] Check the bus routs\n" +
                 "[2] Search for a shortest way from one stop to another\n" +
                 "[3] Exit system.");
     }
     void displayMenu() {
+        int userInput = 0;
+        boolean networkShown = false;
         do {
             try {
                 Scanner input = new Scanner(System.in);
@@ -20,8 +21,12 @@ class Menu extends IOException {
                 switch (userInput) {
                     case 1:
                         Table.printTable();
+                        networkShown = true;
                         break;
                     case 2:
+                        if (!networkShown) {
+                            Table.printTable();
+                        }
                         Table.printShortestPath();
                         break;
                     case 3:
