@@ -1,20 +1,17 @@
-package busses;
+package routs;
 
+import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-class Menu {
-
+class Menu extends IOException {
     private int userInput = 0;
-
     void printMenu() {
-
         System.out.println("[1] Check the bus routs\n" +
                 "[2] Search for a shortest way from one stop to another\n" +
                 "[3] Exit system.");
     }
-
-    void displayMenu() throws InputMismatchException {
+    void displayMenu() {
         do {
             try {
                 Scanner input = new Scanner(System.in);
@@ -22,28 +19,10 @@ class Menu {
                 userInput = input.nextInt();
                 switch (userInput) {
                     case 1:
-                        Network network = new Network(10, 2, 3);
-                        for (var station : network.getStations()) {
-                            System.out.print(station.getID());
-                            System.out.print(" -> ");
-                            for (var path : station.getPaths()) {
-                                System.out.print(path.station.getID());
-                                System.out.print("(");
-
-                                if (path.weight < 10) {
-                                    System.out.print(" ");
-                                }
-                                System.out.print(path.weight);
-                                System.out.print(") ");
-                            }
-                            System.out.println();
-                        }
-                        System.out.println();
-
+                        Table.printTable();
                         break;
-
                     case 2:
-
+                        Table.printShortestPath();
                         break;
                     case 3:
                         System.out.println("----------"); //The session is finished in total
